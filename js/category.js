@@ -1,8 +1,18 @@
 const loadCategories = () => {
 
-    fetch(" https://openapi.programming-hero.com/api/peddy/categories")
+    fetch("https://openapi.programming-hero.com/api/peddy/categories")
     .then((res) => res.json())
     .then((data) => displayCategories(data.categories))
+    .catch((error) => console.log(error));
+
+};
+
+const loadPetCategories = (category) => {
+    //  alert(id);
+
+    fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+    .then((res) => res.json())
+    .then((data) => displayPets(data.data))
     .catch((error) => console.log(error));
 
 };
@@ -11,23 +21,36 @@ const loadCategories = () => {
 
 const displayCategories = (data) => {
 
- const categoryConatainer= document.getElementById("p-categories")
+ const categoryContainer= document.getElementById("p-categories")
+//  petsProfileCon.innerHTML=""
   data.forEach ((item) => {
 
-     const button = document.createElement("button");
-     button.classList ="btn";
-     button.innerHTML=`
-      <img src="${item.category_icon}" alt="${item.category}" width="30" height="30" />
-      ${item.category}
-    `       
+    const buttonContainer = document.createElement("div");
+    buttonContainer.innerHTML= `
+    <button onclick="loadPetCategories('${item.category}')" class="btn">
+    <img src="${item.category_icon}" alt="${item.category}" width="30" height="30" />
+   ${item.category}
+    </button>
+
+    `
+
+
+    //  const button = document.createElement("button");
+    //  button.classList ="btn";
+    //  button.innerHTML=`
+    //   <img src="${item.category_icon}" alt="${item.category}" width="30" height="30" />
+    //   ${item.category}
+    // `       
      
 
     //  add button
-     categoryConatainer.append(button);
+     categoryContainer.append(buttonContainer);
 
   });
 
 };
+
+
 
 const loadPetsProfile = () => {
 
@@ -40,6 +63,8 @@ const loadPetsProfile = () => {
 
 const displayPets = (pets) => {
     const petsProfileCon = document.getElementById("petsPro");
+    petsProfileCon.innerHTML=""
+     
 
     pets.forEach((pets) => {
 
@@ -53,8 +78,8 @@ const displayPets = (pets) => {
   </figure>
   <div class="p-4">
   <h2 class="card-title"> ${pets.pet_name}</h2>
-  <p><i class="fa-solid fa-table-list"></i> Breed:${pets.breed}</p>
-  <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth}</p>
+  <p><i class="fa-solid fa-table-list"></i> Breed:${pets.breed === undefined ? "Not Available": pets.breed}</p>
+  <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth }</p>
   <p><i class="fa-solid fa-mercury"></i> Gender:${pets.gender}</p>
   <p><i class="fa-solid fa-tags"></i> Price:${pets.price}</p>
     <div class="divider"></div>
