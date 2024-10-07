@@ -7,12 +7,26 @@ const loadCategories = () => {
 
 };
 
+const removeActiveClass =()=>{
+    const buttons = document.getElementsByClassName("category-btn");
+    for(let btn of buttons){
+        btn.classList.remove("active");
+    }
+};
+
 const loadPetCategories = (category) => {
     //  alert(id);
 
     fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
     .then((res) => res.json())
-    .then((data) => displayPets(data.data))
+    .then((data) => {
+        removeActiveClass();
+
+        const activeBtn = document.getElementById(`btn-${category}`);
+        // console.log(activeBtn)
+        activeBtn.classList.add("active");
+        displayPets(data.data);
+    })
     .catch((error) => console.log(error));
 
 };
@@ -27,7 +41,7 @@ const displayCategories = (data) => {
 
     const buttonContainer = document.createElement("div");
     buttonContainer.innerHTML= `
-    <button onclick="loadPetCategories('${item.category}')" class="btn">
+    <button id="btn-${item.category}" onclick="loadPetCategories('${item.category}')" class="btn category-btn">
     <img src="${item.category_icon}" alt="${item.category}" width="30" height="30" />
    ${item.category}
     </button>
@@ -50,7 +64,35 @@ const displayCategories = (data) => {
 
 };
 
+const loadPetDetails= async (petId) =>{
+    const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
+    const res = await fetch(uri);
+    const data =await res.json();
+    displayPetdetails(data.petData);
 
+};
+const displayPetdetails =(petData) =>{
+console.log(petData)
+const petDetailsC = document.getElementById("modalDetails");
+petDetailsC.innerHTML= `<img
+      src=${petData.image}
+      alt="Shoes"
+      class="rounded-xl" />
+      <h2 class="card-title"> ${petData.pet_name}</h2>
+  <p><i class="fa-solid fa-table-list"></i> Breed:${petData.breed === undefined ? "Not Available": petData.breed}</p>
+  <p><i class="fa-solid fa-calendar-days"></i> Birth:${petData.date_of_birth }</p>
+  <p><i class="fa-solid fa-mercury"></i> Gender:${petData.gender}</p>
+  <p><i class="fa-solid fa-tags"></i> Price:${petData.price}</p>
+   <p><i class="fa-solid fa-syringe"></i> Vaccinated status:${petData.vaccinated_status}</p>
+    <div class="divider"></div>
+   <p>Details Information</p>
+   <p>${petData.pet_details}</p>
+
+
+
+`
+document.getElementById("showData").click();
+};
 
 const loadPetsProfile = () => {
 
@@ -72,10 +114,11 @@ const displayPets = (pets) => {
         <h2 class=" text-3xl font-bold "> "No Information Available"</h2>
         <p class= "w-10/12 mx-auto">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
 its layout. The point of using Lorem Ipsum is that it has a.</p>
-
-        </div>
+          </div>
         `
         return;
+    }else{
+        petsProfileCon.classList.add("grid");
     }
      
 
@@ -99,7 +142,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     <div class="card-actions flex justify-around">
     <button class="btn btn-outline"><i class="fa-regular fa-thumbs-up"></i></button>
     <button class="btn btn-outline text-lime-600 font-bold">Adopt</button>
-    <button class="btn btn-outline text-lime-600 font-bold">Details</button>
+    <button onclick="loadPetDetails(${pets.petId})"  class="btn btn-outline text-lime-600 font-bold">Details</button>
     </div>
   </div>
         `
