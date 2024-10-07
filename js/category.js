@@ -44,18 +44,24 @@ const displayPets = (pets) => {
     pets.forEach((pets) => {
 
         const card = document.createElement("div");
-        card.classList="card bg-base-100 w-96 shadow-xl"
-        card.innerHTML=`<figure class="px-10 pt-10">
+        card.classList="card bg-base-100 w-78 shadow-xl"
+        card.innerHTML=`<figure class="px-4 pt-4">
     <img
       src=${pets.image}
       alt="Shoes"
       class="rounded-xl" />
   </figure>
-  <div class="card-body items-center text-center">
-    <h2 class="card-title">Shoes!</h2>
-    <p>If a dog chews shoes whose shoes does he choose?</p>
-    <div class="card-actions">
-      <button class="btn btn-primary">Buy Now</button>
+  <div class="p-4">
+  <h2 class="card-title"> ${pets.pet_name}</h2>
+  <p><i class="fa-solid fa-table-list"></i> Breed:${pets.breed}</p>
+  <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth}</p>
+  <p><i class="fa-solid fa-mercury"></i> Gender:${pets.gender}</p>
+  <p><i class="fa-solid fa-tags"></i> Price:${pets.price}</p>
+    <div class="divider"></div>
+    <div class="card-actions flex justify-around">
+    <button class="btn btn-outline"><i class="fa-regular fa-thumbs-up"></i></button>
+    <button class="btn btn-outline text-lime-600 font-bold">Adopt</button>
+    <button class="btn btn-outline text-lime-600 font-bold">Details</button>
     </div>
   </div>
         `
