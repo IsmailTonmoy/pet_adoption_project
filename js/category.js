@@ -63,6 +63,25 @@ const displayCategories = (data) => {
   });
 
 };
+const loadLikeDetails= async (petId) =>{
+    const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
+    const res = await fetch(uri);
+    const data =await res.json();
+    displayLikePet(data.petData);
+
+};
+const displayLikePet =(petData) =>{
+    const petLikeC = document.getElementById("likePet");
+    const newLikeC = document.createElement("div");
+    newLikeC.innerHTML=`
+    <img
+      src=${petData.image}
+      alt="Shoes"
+      class="rounded-xl" />
+    `
+    ;
+    petLikeC.append(newLikeC);
+}
 
 const loadPetDetails= async (petId) =>{
     const uri = `https://openapi.programming-hero.com/api/peddy/pet/${petId}`;
@@ -71,8 +90,8 @@ const loadPetDetails= async (petId) =>{
     displayPetdetails(data.petData);
 
 };
+
 const displayPetdetails =(petData) =>{
-console.log(petData)
 const petDetailsC = document.getElementById("modalDetails");
 petDetailsC.innerHTML= `<img
       src=${petData.image}
@@ -87,9 +106,6 @@ petDetailsC.innerHTML= `<img
     <div class="divider"></div>
    <p>Details Information</p>
    <p>${petData.pet_details}</p>
-
-
-
 `
 document.getElementById("showData").click();
 };
@@ -140,7 +156,7 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
   <p><i class="fa-solid fa-tags"></i> Price:${pets.price}</p>
     <div class="divider"></div>
     <div class="card-actions flex justify-around">
-    <button class="btn btn-outline"><i class="fa-regular fa-thumbs-up"></i></button>
+    <button onclick="loadLikeDetails(${pets.petId})" class="btn btn-outline"><i class="fa-regular fa-thumbs-up"></i></button>
     <button class="btn btn-outline text-lime-600 font-bold">Adopt</button>
     <button onclick="loadPetDetails(${pets.petId})"  class="btn btn-outline text-lime-600 font-bold">Details</button>
     </div>
@@ -151,12 +167,8 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     })
    };
 
-
-
-
-
-
-
+   
+   
 loadCategories();
 loadPetsProfile()
 
