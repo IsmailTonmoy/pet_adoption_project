@@ -52,7 +52,7 @@ const displayCategories = (data) => {
     const buttonContainer = document.createElement("div");
     buttonContainer.classList = "";
     buttonContainer.innerHTML= `
-    <button id="btn-${item.category}" onclick="loadPetCategories('${item.category}')" class="btn w-72  lg:w-40 h-14 text-xl category-btn ">
+    <button id="btn-${item.category}" onclick="loadPetCategories('${item.category}')" class="btn w-72  lg:w-56 h-14 text-xl category-btn ">
     <img src="${item.category_icon}" alt="${item.category}" class="w-10" />
    ${item.category}
     </button>
@@ -80,7 +80,7 @@ const displayLikePet =(petData) =>{
     <img
       src=${petData.image}
       alt="Shoes"
-      class="rounded-md w-40" />
+      class="rounded-md w-40 h-32" />
     `
     ;
     petLikeC.append(newLikeC);
@@ -131,8 +131,8 @@ const displayPets = (pets) => {
         petsProfileCon.innerHTML=`<div class ="w-full h-96 text-center  shadow-xl"> 
         <img class= "w-40 mx-auto pt-6" src="images/error.webp" alt="" />
         <h2 class=" text-3xl font-bold "> "No Information Available"</h2>
-        <p class= "w-10/12 mx-auto">It is a long established fact that a reader will be distracted by the readable content of a page when looking at 
-its layout. The point of using Lorem Ipsum is that it has a.</p>
+        <p class= "w-10/12 mx-auto">We apologize for the inconvenience, but it seems the information you're looking for is currently unavailable. Our team is working hard to resolve the issue. 
+        Please check back soon or contact us for further assistance. Thank you for your understanding!</p>
           </div>
         `
         return;
