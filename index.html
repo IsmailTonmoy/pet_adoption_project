@@ -89,23 +89,21 @@
                 </p>
                 
             </div>
+            
+
+            <nav id="p-categories" class=" grid grid-cols-1 col-span-1 md:grid-cols-3 lg:grid-cols-4 justify-center text-center gap-y-5 pt-6"> </nav>
             <section id="sortPet" >
 
-              <div class="w-11/12 mx-auto flex justify-between items-center pt-4"> 
+              <div class="max-w-7xl mx-auto flex justify-between items-center pt-4"> 
                 <div><h1 class="font-extrabold">Best Deals For You</h1></div>
-                <button id="sortPets" class="btn bg-[#0E7A81] text-white">Sort by Price</button>
+                <button id="sortPets" class="btn bg-green-700 text-white">Sort by Price</button>
               </div>
 
             </section>
+
             
-            <section id="sortP"></section>
 
-
-            <nav id="p-categories" class=" flex justify-center gap-72 pt-6">
-
-                  
-
-            </nav>
+            
         </Section>
 
 
@@ -113,12 +111,39 @@
           <div id="petsPro" class=" max-w-4xl grid grid-cols-3 gap-y-4 gap-x-4 ">
 
           </div>
-          <div id="likePet" class="card bg-base-100 w-96 shadow-xl ">
+          <div  class="card bg-base-100 w-96 shadow-xl">
+
+            <div id="likePet" class=" max-w-4xl mx-auto grid grid-cols-2 gap-4">
+
+            </div>
+
+
+          
             
           </div>
 
 
         </section>
+
+        <section class="w-full mx-auto flex gap-6 pt-6" >
+          
+          <div id="petsPro" class="w-full  ">
+            
+            <div id="loading-spinner" class="hidden w-full h-96 flex items-center justify-center">
+              <div class="spinner-border animate-spin inline-block w-12 h-12 border-4 border-green-600 rounded-full"></div>
+            </div>
+            
+
+          </div>
+          
+            <div id="loading-spinner" class="hidden flex w-full h-96  items-center justify-center">
+              <span class="loading loading-bars loading-lg"></span>
+            </div>
+          
+
+
+        </section>
+
 
 
     </main>
@@ -131,28 +156,26 @@
     </div>
     <div class="modal-action">
       <form method="dialog">
-        <!-- if there is a button in form, it will close the modal -->
         <button class="btn">Close</button>
       </form>
     </div>
   </div>
 </dialog>
 
- <!-- Open the modal using ID.showModal() method -->
- <!-- <button id="AdopshowData" class="btn1 hidden" onclick="adopModal.showModal()">open modal</button>
- <dialog id="adopModal" class="modal modal-bottom sm:modal-middle">
-   <div class="modal-box">
-     <div id="modalDetails">
- 
-     </div>
-     <div class="modal-action-a">
-       <form method="dialog">
-         if there is a button in form, it will close the modal -->
-         <!-- <button class="btn1">Close</button>
-       </form>
-     </div>
-   </div>
- </dialog> -->
+<button class="btn hidden" onclick="openModal()">Open Modal</button>
+
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle  ">
+  <div class="modal-box flex flex-col justify-center items-center bg-green-600">
+    <h3 class="text-2xl font-bold text-white">🎉Congratulations🎉</h3>
+    <p class="py-4 font-semibold text-xl text-white"> ✨For Adopting This Lovely Pet✨</p>
+    <span class="countdown font-mono text-6xl">
+      <span class="text-white" style="--value:3;"></span> 
+    </span>
+    <div class="modal-action">
+      
+    </div>
+  </div>
+</dialog>
 
 
 
@@ -200,41 +223,6 @@
             </form>
         
       </footer>
-    <!-- <footer class="bg-black text-white">
-        <div>
-            <div>
-                <a class="btn btn-ghost text-xl"><span><img src="images/logo.webp" alt=""></span>Peddy</a>
-                <p>Location: av. Washington 165, NY CA 
-                    <br>54003
-                    <br>Phone: +31 85 964 47 25
-                    <br>Email: info@yourdomain.com
-                    <br>Openings hours: 9.00 AM - 5.00 PM</p>
-                    <div class="space-x-3">
-                        <i class="fa-brands fa-facebook"></i>
-                        <i class="fa-brands fa-x-twitter"></i>
-                        <i class="fa-brands fa-youtube"></i>
-                        <i class="fa-brands fa-instagram"></i>
-                        
-                    </div>
-            </div>
-            <div>
-                <h1>Useful Links</h1>
-                <a class="btn btn-ghost ">Home</a>
-                <a class="btn btn-ghost ">About Us</a>
-                <a class="btn btn-ghost ">Animals</a>
-                <a class="btn btn-ghost ">Foundation</a>
-                <a class="btn btn-ghost ">Contact</a>
-
-                
-
-            </div>
-            <div>
-
-            </div>
-        </div>
-
-    
-    </footer> -->
 
     <script src="js/category.js"></script>
 </body>

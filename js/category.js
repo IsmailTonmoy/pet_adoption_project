@@ -31,31 +31,22 @@ const loadPetCategories = (category) => {
 
 };
 
-
-
 const displayCategories = (data) => {
 
  const categoryContainer= document.getElementById("p-categories")
-//  petsProfileCon.innerHTML=""
+
   data.forEach ((item) => {
 
     const buttonContainer = document.createElement("div");
+    buttonContainer.classList = "";
     buttonContainer.innerHTML= `
-    <button id="btn-${item.category}" onclick="loadPetCategories('${item.category}')" class="btn category-btn">
-    <img src="${item.category_icon}" alt="${item.category}" width="30" height="30" />
+    <button id="btn-${item.category}" onclick="loadPetCategories('${item.category}')" class="btn w-72  lg:w-40 h-14 text-xl category-btn ">
+    <img src="${item.category_icon}" alt="${item.category}" class="w-10" />
    ${item.category}
     </button>
 
     `
 
-
-    //  const button = document.createElement("button");
-    //  button.classList ="btn";
-    //  button.innerHTML=`
-    //   <img src="${item.category_icon}" alt="${item.category}" width="30" height="30" />
-    //   ${item.category}
-    // `       
-     
 
     //  add button
      categoryContainer.append(buttonContainer);
@@ -77,7 +68,7 @@ const displayLikePet =(petData) =>{
     <img
       src=${petData.image}
       alt="Shoes"
-      class="rounded-xl" />
+      class="rounded-md w-40" />
     `
     ;
     petLikeC.append(newLikeC);
@@ -96,7 +87,7 @@ const petDetailsC = document.getElementById("modalDetails");
 petDetailsC.innerHTML= `<img
       src=${petData.image}
       alt="Shoes"
-      class="rounded-xl" />
+      class="rounded-xl w-full h-72" />
       <h2 class="card-title"> ${petData.pet_name}</h2>
   <p><i class="fa-solid fa-table-list"></i> Breed:${petData.breed === undefined ? "Not Available": petData.breed}</p>
   <p><i class="fa-solid fa-calendar-days"></i> Birth:${petData.date_of_birth }</p>
@@ -146,18 +137,18 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
     <img
       src=${pets.image}
       alt="Shoes"
-      class="rounded-xl" />
+      class="rounded-xl w-72 h-44" />
   </figure>
   <div class="p-4">
   <h2 class="card-title"> ${pets.pet_name}</h2>
   <p><i class="fa-solid fa-table-list"></i> Breed:${pets.breed === undefined ? "Not Available": pets.breed}</p>
   <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth }</p>
   <p><i class="fa-solid fa-mercury"></i> Gender:${pets.gender}</p>
-  <p><i class="fa-solid fa-tags"></i> Price:${pets.price}</p>
+  <p><i class="fa-solid fa-tags"></i> Price:$${pets.price}</p>
     <div class="divider"></div>
     <div class="card-actions flex justify-around">
     <button onclick="loadLikeDetails(${pets.petId})" class="btn btn-outline"><i class="fa-regular fa-thumbs-up"></i></button>
-    <button class="btn btn-outline text-lime-600 font-bold">Adopt</button>
+    <button onclick="clickAdopt(this)" class="adopt-btn btn btn-outline text-[#0E7A81] font-bold">Adopt</button>
     <button onclick="loadPetDetails(${pets.petId})"  class="btn btn-outline text-lime-600 font-bold">Details</button>
     </div>
   </div>
@@ -179,6 +170,30 @@ function sortPetsPrice(){
     .catch((error) => console.log(error));
 
 }
+
+const clickAdopt = (button) => {
+    const modal = document.getElementById('my_modal_5');
+    modal.showModal();
+  
+    let counter = 3; 
+    const countdownElement = modal.querySelector('.countdown span');
+    countdownElement.style.setProperty('--value', counter);
+    const interval = setInterval(() => {
+      counter--;
+      countdownElement.style.setProperty('--value', counter);
+
+      if (counter <= 0) {
+        clearInterval(interval);
+        modal.close();
+        button.textContent = 'Adopted'; 
+        button.classList.add('bg-blue-200')
+      }
+    }, 1000); 
+    
+    
+  };
+  
+
 
    
    
