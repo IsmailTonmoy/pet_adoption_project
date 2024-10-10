@@ -128,9 +128,9 @@ const displayPets = (pets) => {
 
     if(pets.length == 0){
         petsProfileCon.classList.remove("grid");
-        petsProfileCon.innerHTML=`<div class ="w-full h-96 text-center  shadow-xl"> 
-        <img class= "w-40 mx-auto pt-6" src="images/error.webp" alt="" />
-        <h2 class=" text-3xl font-bold "> "No Information Available"</h2>
+        petsProfileCon.innerHTML=`<div class =" w-72 lg:w-full h-96 text-center  shadow-xl"> 
+        <img class= "w-14 lg:w-40 mx-auto pt-6" src="images/error.webp" alt="" />
+        <h2 class=" text-xl lg:text-3xl font-bold "> "No Information Available"</h2>
         <p class= "w-10/12 mx-auto">We apologize for the inconvenience, but it seems the information you're looking for is currently unavailable. Our team is working hard to resolve the issue. 
         Please check back soon or contact us for further assistance. Thank you for your understanding!</p>
           </div>
