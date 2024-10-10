@@ -204,6 +204,10 @@ const clickAdopt = (button) => {
     
     
   };
+
+  document.getElementById("view").addEventListener("click", () => {
+    window.location.href = "#adoptBest";
+  });
   
 
 
