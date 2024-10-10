@@ -18,4 +18,4 @@ Peddy is a user-friendly web platform designed to help users adopt pets. It feat
 * Promises with .then() and .catch() for API responses and error handling.
 
 ## Live Demo Link
-* https://shimmering-faun-bd3da9.netlify.app/
+* https://spectacular-sopapillas-5654d6.netlify.app/
