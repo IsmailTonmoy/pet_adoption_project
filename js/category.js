@@ -15,21 +15,33 @@ const removeActiveClass =()=>{
 };
 
 const loadPetCategories = (category) => {
-    //  alert(id);
+    const spinner = document.getElementById("loading-spinner");
+    const petSection = document.getElementById("petsPro");
+  
+    spinner.classList.remove("hidden");
+    petSection.classList.add("hidden");
+  
+    setTimeout(() => {
+      fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
+        .then((res) => res.json())
+        .then((data) => {
+          removeActiveClass();
+          const activeBtn = document.getElementById(`btn-${category}`);
+          activeBtn.classList.add("active");
 
-    fetch(`https://openapi.programming-hero.com/api/peddy/category/${category}`)
-    .then((res) => res.json())
-    .then((data) => {
-        removeActiveClass();
-
-        const activeBtn = document.getElementById(`btn-${category}`);
-        // console.log(activeBtn)
-        activeBtn.classList.add("active");
-        displayPets(data.data);
-    })
-    .catch((error) => console.log(error));
-
-};
+          spinner.classList.add("hidden");
+          petSection.classList.remove("hidden");
+  
+          displayPets(data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+          spinner.classList.add("hidden");
+          petSection.classList.remove("hidden");
+        });
+    }, 2000); 
+   
+  };
 
 const displayCategories = (data) => {
 
@@ -88,11 +100,11 @@ petDetailsC.innerHTML= `<img
       src=${petData.image}
       alt="Shoes"
       class="rounded-xl w-full h-72" />
-      <h2 class="card-title"> ${petData.pet_name}</h2>
-  <p><i class="fa-solid fa-table-list"></i> Breed:${petData.breed === undefined ? "Not Available": petData.breed}</p>
-  <p><i class="fa-solid fa-calendar-days"></i> Birth:${petData.date_of_birth === undefined ? "Not Available": petData.date_of_birth }</p>
-  <p><i class="fa-solid fa-mercury"></i> Gender:${petData.gender === undefined ? "Not Available": petData.gender}</p>
-  <p><i class="fa-solid fa-tags"></i> Price:${petData.price}</p>
+      <h2 class="card-title pt-4"> ${petData.pet_name}</h2>
+  <p><i class="fa-solid fa-table-list"></i> Breed:${petData.breed ?? "Not Available"}</p>
+  <p><i class="fa-solid fa-calendar-days"></i> Birth:${petData.date_of_birth === undefined || petData.date_of_birth === null ? "Not Available": petData.date_of_birth }</p>
+  <p><i class="fa-solid fa-mercury"></i> Gender:${petData.gender === undefined  ? "Not Available": petData.gender}</p>
+  <p><i class="fa-solid fa-tags"></i> Price:${petData.price === undefined || petData.price === null  ? "Not Available":petData.price}</p>
    <p><i class="fa-solid fa-syringe"></i> Vaccinated status:${petData.vaccinated_status}</p>
     <div class="divider"></div>
    <p>Details Information</p>
@@ -142,9 +154,9 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
   <div class="p-4">
   <h2 class="card-title"> ${pets.pet_name}</h2>
   <p><i class="fa-solid fa-table-list"></i> Breed:${pets.breed === undefined ? "Not Available": pets.breed}</p>
-  <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth === undefined  ? "Not Available": pets.date_of_birth }</p>
+  <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth === undefined || pets.date_of_birth === null  ? "Not Available": pets.date_of_birth }</p>
   <p><i class="fa-solid fa-mercury"></i> Gender:${pets.gender === undefined ? "Not Available": pets.gender}</p>
-  <p><i class="fa-solid fa-tags"></i> Price:$${pets.price}</p>
+  <p><i class="fa-solid fa-tags"></i> Price:$${pets.price === undefined || pets.price === null  ? "Not Available":pets.price}</p>
     <div class="divider"></div>
     <div class="card-actions flex justify-around">
     <button onclick="loadLikeDetails(${pets.petId})" class="btn btn-outline"><i class="fa-regular fa-thumbs-up"></i></button>
