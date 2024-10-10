@@ -90,8 +90,8 @@ petDetailsC.innerHTML= `<img
       class="rounded-xl w-full h-72" />
       <h2 class="card-title"> ${petData.pet_name}</h2>
   <p><i class="fa-solid fa-table-list"></i> Breed:${petData.breed === undefined ? "Not Available": petData.breed}</p>
-  <p><i class="fa-solid fa-calendar-days"></i> Birth:${petData.date_of_birth }</p>
-  <p><i class="fa-solid fa-mercury"></i> Gender:${petData.gender}</p>
+  <p><i class="fa-solid fa-calendar-days"></i> Birth:${petData.date_of_birth === undefined ? "Not Available": petData.date_of_birth }</p>
+  <p><i class="fa-solid fa-mercury"></i> Gender:${petData.gender === undefined ? "Not Available": petData.gender}</p>
   <p><i class="fa-solid fa-tags"></i> Price:${petData.price}</p>
    <p><i class="fa-solid fa-syringe"></i> Vaccinated status:${petData.vaccinated_status}</p>
     <div class="divider"></div>
@@ -142,8 +142,8 @@ its layout. The point of using Lorem Ipsum is that it has a.</p>
   <div class="p-4">
   <h2 class="card-title"> ${pets.pet_name}</h2>
   <p><i class="fa-solid fa-table-list"></i> Breed:${pets.breed === undefined ? "Not Available": pets.breed}</p>
-  <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth }</p>
-  <p><i class="fa-solid fa-mercury"></i> Gender:${pets.gender}</p>
+  <p><i class="fa-solid fa-calendar-days"></i> Birth:${pets.date_of_birth === undefined  ? "Not Available": pets.date_of_birth }</p>
+  <p><i class="fa-solid fa-mercury"></i> Gender:${pets.gender === undefined ? "Not Available": pets.gender}</p>
   <p><i class="fa-solid fa-tags"></i> Price:$${pets.price}</p>
     <div class="divider"></div>
     <div class="card-actions flex justify-around">
